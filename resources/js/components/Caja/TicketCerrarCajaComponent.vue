@@ -120,7 +120,9 @@
                 </tr>
             </tfoot>
         </table>
-        {{prueba}}
+        <div class="text-center mt-4 pt-3">
+            -
+        </div>
     </div>
 </template>
 <script>

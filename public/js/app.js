@@ -2779,6 +2779,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3106,6 +3108,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3178,6 +3182,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -5122,6 +5129,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5134,10 +5144,11 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var queryString = window.location.search;
     var urlParams = new URLSearchParams(queryString);
+    var id_venta = urlParams.get("id");
     this.idVenta_Global = urlParams.get("id");
-    this.fechaHoraConfiguradaPeru(urlParams.get("id"));
-    this.obtenerDatosVenta(urlParams.get("id"));
-    this.obtenerDatosDetalleVenta(urlParams.get("id"));
+    this.fechaHoraConfiguradaPeru(id_venta);
+    this.obtenerDatosVenta(id_venta);
+    this.obtenerDatosDetalleVenta(id_venta);
   },
   mounted: function mounted() {
     setTimeout(imprimir, 1000);
@@ -42765,7 +42776,10 @@ var render = function() {
         ])
       ])
     ]),
-    _vm._v("\n    " + _vm._s(_vm.prueba) + "\n")
+    _vm._v(" "),
+    _c("div", { staticClass: "text-center mt-4 pt-3" }, [
+      _vm._v("\n        -\n    ")
+    ])
   ])
 }
 var staticRenderFns = [
@@ -43295,7 +43309,10 @@ var render = function() {
       staticClass: "my-3",
       staticStyle: { "border-top": "3px dashed black" }
     }),
-    _vm._v("\n    " + _vm._s(_vm.prueba) + "\n")
+    _vm._v(" "),
+    _c("div", { staticClass: "text-center pt-3" }, [
+      _vm._v("\n        -\n    ")
+    ])
   ])
 }
 var staticRenderFns = [
@@ -43674,7 +43691,11 @@ var render = function() {
     _c("hr", {
       staticClass: "my-3",
       staticStyle: { "border-top": "3px dashed black" }
-    })
+    }),
+    _vm._v(" "),
+    _c("div", { staticClass: "text-center pt-3" }, [
+      _vm._v("\n        -\n    ")
+    ])
   ])
 }
 var staticRenderFns = [
@@ -46845,7 +46866,11 @@ var render = function() {
       staticStyle: { "border-top": "3px dashed black" }
     }),
     _vm._v(" "),
-    _vm._m(4)
+    _vm._m(4),
+    _vm._v(" "),
+    _c("div", { staticClass: "text-center pt-3" }, [
+      _vm._v("\n        -\n    ")
+    ])
   ])
 }
 var staticRenderFns = [

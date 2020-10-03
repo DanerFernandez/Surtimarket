@@ -142,7 +142,9 @@
         <hr class="my-3" style="border-top: 3px dashed black;" />
         <p class="text-center"><b>COPIA SIN VALOR</b></p>
         <hr class="my-3" style="border-top: 3px dashed black;" />
-        {{ prueba }}
+        <div class="text-center pt-3">
+            -
+        </div>
     </div>
 </template>
 <script>
