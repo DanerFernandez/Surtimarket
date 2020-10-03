@@ -49,7 +49,7 @@
             <button type="submit" class="btn btn-light btn-sq-lg m-3">
                 <img src="..\resources\views\imagenes\cashbook-80x80.png"/>
                 <hr class="my-1">
-                Registro Ventas
+                Registro
             </button>
         </a>
         @endif

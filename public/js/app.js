@@ -46245,7 +46245,7 @@ var render = function() {
   return _c("div", [
     _c("div", { staticClass: "card" }, [
       _c("div", { staticClass: "card-header text-center" }, [
-        _vm._v("\n            Registro de Ventas\n        ")
+        _vm._v("\n            Registro\n        ")
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [

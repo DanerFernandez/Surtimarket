@@ -146,7 +146,7 @@
                                     <a class="nav-link" href="{{ route('vista-personal') }}">Personal</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('vista-registro-ventas') }}">Registro Ventas</a>
+                                    <a class="nav-link" href="{{ route('vista-registro-ventas') }}">Registro</a>
                                 </li>
                             @endif
                             <li class="nav-item dropdown ml-3">

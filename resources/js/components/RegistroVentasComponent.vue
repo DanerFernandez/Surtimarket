@@ -2,7 +2,7 @@
     <div>
         <div class="card">
             <div class="card-header text-center">
-                Registro de Ventas
+                Registro
             </div>
             <div class="card-body">
                 <div class="scrollable-lg" id="scroll-carrito" v-if="lista_cajas">
