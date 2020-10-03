@@ -2555,6 +2555,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -42225,8 +42243,21 @@ var render = function() {
             : _c("div", [
                 !_vm.verVentasRealizadas && !_vm.verAnularVentas
                   ? _c("div", [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-purple btn-block",
+                          attrs: { href: "./vista-venta" }
+                        },
+                        [
+                          _vm._v(
+                            "\n                            Ir a Venta\n                        "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
                       _c("div", { staticClass: "row my-5" }, [
-                        _c("div", { staticClass: "col-md-6 text-center" }, [
+                        _c("div", { staticClass: "col-md-4 text-center" }, [
                           _c(
                             "button",
                             {
@@ -42248,13 +42279,13 @@ var render = function() {
                               _vm._v(" "),
                               _c("hr", { staticClass: "my-1" }),
                               _vm._v(
-                                "\n                                        Anular Venta\n                                    "
+                                "\n                                    Anular Venta\n                                "
                               )
                             ]
                           )
                         ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6 text-center" }, [
+                        _c("div", { staticClass: "col-md-4 text-center" }, [
                           _c(
                             "button",
                             {
@@ -42277,6 +42308,33 @@ var render = function() {
                               _c("hr", { staticClass: "my-1" }),
                               _vm._v(
                                 "\n                                    Ventas Realizadas\n                                "
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-4 text-center" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-light btn-sq-lg mx-3",
+                              attrs: {
+                                type: "button",
+                                "data-toggle": "modal",
+                                "data-target": "#cerrarCajaModal"
+                              }
+                            },
+                            [
+                              _c("img", {
+                                attrs: {
+                                  src:
+                                    "../resources/views/imagenes/safe-out-80x80.png"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("hr", { staticClass: "my-1" }),
+                              _vm._v(
+                                "\n                                    Cerrar Caja\n                                "
                               )
                             ]
                           )
@@ -42331,24 +42389,7 @@ var render = function() {
                               : _vm._e()
                           ])
                         ])
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-danger btn-block mt-5",
-                          attrs: {
-                            type: "button",
-                            "data-toggle": "modal",
-                            "data-target": "#cerrarCajaModal"
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                            Cerrar Caja\n                        "
-                          )
-                        ]
-                      )
+                      ])
                     ])
                   : _c("div", [
                       _vm.verVentasRealizadas

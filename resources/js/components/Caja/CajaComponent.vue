@@ -107,23 +107,29 @@
                     </div>
                     <div v-else>
                         <div v-if="!verVentasRealizadas && !verAnularVentas">
+                            <a
+                                class="btn btn-purple btn-block"
+                                href="./vista-venta"
+                            >
+                                Ir a Venta
+                            </a>
                             <div class="row my-5">
-                                <div class="col-md-6 text-center">
-                                        <button
-                                            type="submit"
-                                            class="btn btn-light btn-sq-lg mx-3"
-                                            @click="verAnularVentas = true"
-                                        >
-                                            <img
-                                                :src="
-                                                    '../resources/views/imagenes/cancel-2-80x80.png'
-                                                "
-                                            />
-                                            <hr class="my-1" />
-                                            Anular Venta
-                                        </button>
+                                <div class="col-md-4 text-center">
+                                    <button
+                                        type="submit"
+                                        class="btn btn-light btn-sq-lg mx-3"
+                                        @click="verAnularVentas = true"
+                                    >
+                                        <img
+                                            :src="
+                                                '../resources/views/imagenes/cancel-2-80x80.png'
+                                            "
+                                        />
+                                        <hr class="my-1" />
+                                        Anular Venta
+                                    </button>
                                 </div>
-                                <div class="col-md-6 text-center">
+                                <div class="col-md-4 text-center">
                                     <button
                                         type="submit"
                                         class="btn btn-light btn-sq-lg mx-3"
@@ -136,6 +142,22 @@
                                         />
                                         <hr class="my-1" />
                                         Ventas Realizadas
+                                    </button>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <button
+                                        class="btn btn-light btn-sq-lg mx-3"
+                                        type="button"
+                                        data-toggle="modal"
+                                        data-target="#cerrarCajaModal"
+                                    >
+                                        <img
+                                            :src="
+                                                '../resources/views/imagenes/safe-out-80x80.png'
+                                            "
+                                        />
+                                        <hr class="my-1" />
+                                        Cerrar Caja
                                     </button>
                                 </div>
                             </div>
@@ -173,23 +195,19 @@
                                 </tbody>
                             </table>
 
-                            <!-- Button trigger modal -->
-                            <button
-                                type="button"
-                                class="btn btn-danger btn-block mt-5"
-                                data-toggle="modal"
-                                data-target="#cerrarCajaModal"
-                            >
-                                Cerrar Caja
-                            </button>
                             <!-- Modal -->
                         </div>
                         <div v-else>
                             <div v-if="verVentasRealizadas">
-                                <ventas-realizadas-caja-component :id_caja="caja[0].id" @respuesta="verVentasRealizadas = $event"/>
+                                <ventas-realizadas-caja-component
+                                    :id_caja="caja[0].id"
+                                    @respuesta="verVentasRealizadas = $event"
+                                />
                             </div>
                             <div v-if="verAnularVentas">
-                                <anular-venta-caja-component @respuesta="verAnularVentas = $event"/>
+                                <anular-venta-caja-component
+                                    @respuesta="verAnularVentas = $event"
+                                />
                             </div>
                         </div>
                     </div>
@@ -253,7 +271,7 @@ export default {
             fecha_separada: [],
             fecha: "",
             verVentasRealizadas: false,
-            verAnularVentas: false,
+            verAnularVentas: false
         };
     },
     created() {
@@ -332,7 +350,7 @@ export default {
                 "_blank",
                 "width=800,height=600"
             );
-        },
+        }
     }
 };
 </script>
