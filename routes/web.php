@@ -99,4 +99,12 @@ Route::post('/ver-caja-ventas-global','CajaController@verCajaVentasGlobal')->mid
 
 Route::post('/editar-datos-usuario','UsuarioController@editarDatosUsuario')->middleware('auth');
 
+Route::get('/copia-ticket-venta', function (){
+    return view('auth.copiaTicket.copiaTicketVenta');
+})->name('copia-ticket-venta')->middleware('auth');
+
+Route::get('/copia-ticket-caja', function (){
+    return view('auth.copiaTicket.copiaTicketCaja');
+})->name('copia-ticket-caja')->middleware('auth');
+
 //-----------------------------------

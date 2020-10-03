@@ -1,5 +1,8 @@
 <template>
     <div style="width: 250px" class="mt-3">
+        <hr class="my-3" style="border-top: 3px dashed black;" />
+        <p class="text-center"><b>COPIA SIN VALOR</b></p>
+        <hr class="my-3" style="border-top: 3px dashed black;" />
         <div class="text-center">
             <b style="font-size: 20px">SURTIMAR'KET</b>
             <br />
@@ -38,6 +41,8 @@
         </table>
 
         <hr class="my-3" style="border-top: 3px dashed black;" />
+        <p class="text-center"><b>COPIA SIN VALOR</b></p>
+        <hr class="my-3" style="border-top: 3px dashed black;" />
         <table style="width: 250px">
             <thead>
                 <tr>
@@ -68,6 +73,8 @@
             </tbody>
         </table>
 
+        <hr class="my-3" style="border-top: 3px dashed black;" />
+        <p class="text-center"><b>COPIA SIN VALOR</b></p>
         <hr class="my-3" style="border-top: 3px dashed black;" />
         <table style="width: 250px">
             <tr>
@@ -118,17 +125,10 @@
                 </td>
             </tr>
         </table>
-
+        
         <hr class="my-3" style="border-top: 3px dashed black;" />
-        <div>
-            <div class="text-center mb-4">
-                <b>¡¡GRACIAS POR SU COMPRA!!</b>
-                <br />
-                <b style="font-size: 12px"
-                    >NO SE ACEPTAN CAMBIOS, NI DEVOLUCIONES.</b
-                >
-            </div>
-        </div>
+        <p class="text-center"><b>COPIA SIN VALOR</b></p>
+        <hr class="my-3" style="border-top: 3px dashed black;" />
     </div>
 </template>
 

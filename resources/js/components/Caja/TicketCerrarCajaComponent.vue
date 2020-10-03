@@ -9,7 +9,7 @@
             <br />
             <span>Ica - Ica - Santiago</span>
             <br />
-            <span>R.U.C : !!10986532157</span>
+            <span>R.U.C : !!99999999999</span>
             <br /><br />
             <span><b>CIERRE DE CAJA</b></span>
             <br />

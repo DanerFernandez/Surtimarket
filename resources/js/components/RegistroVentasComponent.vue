@@ -139,9 +139,9 @@
                                 <td>
                                     <a
                                         class="btn btn-success btn-sm"
-                                        @click="imprimirTicket"
+                                        @click="generarCopiaTicketVenta(item.id)"
                                     >
-                                        Imprimir Ticket
+                                        Imprimir Copia
                                     </a>
                                 </td>
                             </tr>
@@ -191,8 +191,13 @@ export default {
         imprimirCaja() {
             console.log("Imprimir Caja");
         },
-        imprimirTicket() {
-            console.log("Imprimir Ticket");
+        generarCopiaTicketVenta(id_venta){
+            const idCaja = id_venta;
+            window.open(
+                "./copia-ticket-venta?id=" + id_venta,
+                "_blank",
+                "width=800,height=600"
+            );
         }
     }
 };

@@ -40,6 +40,11 @@ Vue.component('registro-ventas-component', require('./components/RegistroVentasC
 
 Vue.component('ticket-venta-component', require('./components/TicketVenta.vue').default);
 
+Vue.component('copia-ticket-venta-component', require('./components/CopiaTicket/CopiaTicketVentaComponent.vue').default);
+Vue.component('copia-ticket-caja-component', require('./components/CopiaTicket/CopiaTicketCajaComponent.vue').default);
+
+
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

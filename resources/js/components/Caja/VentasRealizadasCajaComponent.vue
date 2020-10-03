@@ -58,7 +58,7 @@
                             ANULADO
                         </td>
                         <td>
-                            <a class="btn btn-success btn-sm">
+                            <a class="btn btn-success btn-sm" @click="generarCopiaTicketVenta(item.id)">
                                 Imprimir Ticket
                             </a>
                         </td>
@@ -85,6 +85,16 @@ export default {
         axios.post("ver-caja-ventas-global", params).then(res => {
             this.ventas_caja = res.data;
         });
+    },
+    methods:{
+        generarCopiaTicketVenta(id_venta){
+            const idCaja = id_venta;
+            window.open(
+                "./copia-ticket-venta?id=" + id_venta,
+                "_blank",
+                "width=800,height=600"
+            );
+        }
     }
 };
 </script>
