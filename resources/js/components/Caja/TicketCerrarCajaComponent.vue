@@ -133,7 +133,12 @@ export default {
             datosDetalleCaja_Global: '',
         };
     },
-    computed: {},
+    mounted() {
+        setTimeout(imprimir, 2000);
+        function imprimir() {
+            window.print();
+        }
+    },
     created() {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
@@ -145,12 +150,6 @@ export default {
         this.obtenerDatosCaja(id_caja);
 
         this.obtenerVentasCerrarCaja(id_caja);
-        
-        setTimeout(imprimir, 2000);
-        function imprimir() {
-            window.print();
-        }
-        
     },
     methods: {
         obtenerVentasCerrarCaja(id_caja) {

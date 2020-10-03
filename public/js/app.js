@@ -2626,7 +2626,7 @@ __webpack_require__.r(__webpack_exports__);
         estado: 0
       };
       axios.put("caja/".concat(idCaja), cerrarCaja).then(function (res) {
-        _this3.generarTicketCerrarCaja();
+        _this3.generarTicketCerrarCaja(_this3.caja[0].id);
 
         axios.get("caja/create").then(function (res) {
           _this3.caja = res.data;
@@ -2636,8 +2636,8 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
     },
-    generarTicketCerrarCaja: function generarTicketCerrarCaja() {
-      var idCaja = this.caja[0].id;
+    generarTicketCerrarCaja: function generarTicketCerrarCaja(id_caja) {
+      var idCaja = id_caja;
       window.open("./ticket-cerrar-caja?id=" + idCaja, "_blank", "width=800,height=600");
     }
   }
@@ -2788,7 +2788,13 @@ __webpack_require__.r(__webpack_exports__);
       datosDetalleCaja_Global: ''
     };
   },
-  computed: {},
+  mounted: function mounted() {
+    setTimeout(imprimir, 2000);
+
+    function imprimir() {
+      window.print();
+    }
+  },
   created: function created() {
     var queryString = window.location.search;
     var urlParams = new URLSearchParams(queryString);
@@ -2797,11 +2803,6 @@ __webpack_require__.r(__webpack_exports__);
     this.obtenerDatosDetalleCaja(id_caja);
     this.obtenerDatosCaja(id_caja);
     this.obtenerVentasCerrarCaja(id_caja);
-    setTimeout(imprimir, 2000);
-
-    function imprimir() {
-      window.print();
-    }
   },
   methods: {
     obtenerVentasCerrarCaja: function obtenerVentasCerrarCaja(id_caja) {
@@ -2961,7 +2962,210 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      idCaja_Global: "",
+      ventasCerrarCaja_Global: "",
+      fechasCaja_Global: "",
+      datosDetalleCaja_Global: ""
+    };
+  },
+  mounted: function mounted() {
+    setTimeout(imprimir, 2000);
+
+    function imprimir() {
+      window.print();
+    }
+  },
+  created: function created() {
+    var queryString = window.location.search;
+    var urlParams = new URLSearchParams(queryString);
+    var id_caja = urlParams.get("id");
+    this.idCaja_Global = urlParams.get("id");
+    this.obtenerDatosDetalleCaja(id_caja);
+    this.obtenerDatosCaja(id_caja);
+    this.obtenerVentasCerrarCaja(id_caja);
+  },
+  methods: {
+    obtenerVentasCerrarCaja: function obtenerVentasCerrarCaja(id_caja) {
+      var _this = this;
+
+      var params = {
+        id: id_caja
+      };
+      axios.post("ver-caja", params).then(function (res) {
+        _this.ventasCerrarCaja_Global = res.data;
+      });
+    },
+    obtenerDatosCaja: function obtenerDatosCaja(id_caja) {
+      var _this2 = this;
+
+      axios.get("caja/" + id_caja).then(function (res) {
+        _this2.fechasCaja_Global = {
+          fecha_inicio: res.data.fecha_inicio,
+          hora_inicio: res.data.hora_inicio,
+          fecha_cierre: res.data.fecha_cierre,
+          hora_cierre: res.data.hora_cierre
+        };
+      });
+    },
+    obtenerDatosDetalleCaja: function obtenerDatosDetalleCaja(id_caja) {
+      var _this3 = this;
+
+      var params = {
+        id: id_caja
+      };
+      axios.post("obtener-datos-detalle-caja", params).then(function (res) {
+        _this3.datosDetalleCaja_Global = res.data;
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -3120,10 +3324,11 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var queryString = window.location.search;
     var urlParams = new URLSearchParams(queryString);
+    var id_venta = urlParams.get("id");
     this.idVenta_Global = urlParams.get("id");
-    this.fechaHoraConfiguradaPeru(urlParams.get("id"));
-    this.obtenerDatosVenta(urlParams.get("id"));
-    this.obtenerDatosDetalleVenta(urlParams.get("id"));
+    this.fechaHoraConfiguradaPeru(id_venta);
+    this.obtenerDatosVenta(id_venta);
+    this.obtenerDatosDetalleVenta(id_venta);
   },
   mounted: function mounted() {
     setTimeout(imprimir, 1000);
@@ -4764,6 +4969,10 @@ __webpack_require__.r(__webpack_exports__);
     generarCopiaTicketVenta: function generarCopiaTicketVenta(id_venta) {
       var idCaja = id_venta;
       window.open("./copia-ticket-venta?id=" + id_venta, "_blank", "width=800,height=600");
+    },
+    generarCopiaTicketCaja: function generarCopiaTicketCaja(id_caja) {
+      var idCaja = id_caja;
+      window.open("./copia-ticket-caja?id=" + idCaja, "_blank", "width=800,height=600");
     }
   }
 });
@@ -42847,9 +43056,354 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", { staticClass: "mt-3", staticStyle: { width: "250px" } }, [
+    _c("hr", {
+      staticClass: "my-3",
+      staticStyle: { "border-top": "3px dashed black" }
+    }),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _c("hr", {
+      staticClass: "my-3",
+      staticStyle: { "border-top": "3px dashed black" }
+    }),
+    _vm._v(" "),
+    _c("div", { staticClass: "text-center" }, [
+      _c("b", { staticStyle: { "font-size": "20px" } }, [
+        _vm._v("SURTIMAR'KET")
+      ]),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("b", [_vm._v("Todo lo que buscas en un solo lugar")]),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("span", [_vm._v("Cc.pp. Juan Velasco Alvarado B-4")]),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("span", [_vm._v("Ica - Ica - Santiago")]),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("span", [_vm._v("R.U.C : !!99999999999")]),
+      _vm._v(" "),
+      _c("br"),
+      _c("br"),
+      _vm._v(" "),
+      _vm._m(1),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("span", [_vm._v("N° de Caja: " + _vm._s(_vm.idCaja_Global))])
+    ]),
+    _vm._v(" "),
+    _c("table", { staticClass: "mt-3", staticStyle: { width: "250px" } }, [
+      _vm._m(2),
+      _vm._v(" "),
+      _c("tr", [
+        _c("td", { staticClass: "w-50 text-left" }, [
+          _vm._v(
+            "\n                " +
+              _vm._s(_vm.fechasCaja_Global.fecha_inicio) +
+              "\n            "
+          )
+        ]),
+        _vm._v(" "),
+        _c("td", { staticClass: "w-50 text-right" }, [
+          _vm._v(
+            "\n                " +
+              _vm._s(_vm.fechasCaja_Global.hora_inicio) +
+              "\n            "
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _vm._m(3),
+      _vm._v(" "),
+      _c("tr", [
+        _c("td", { staticClass: "w-50 text-left" }, [
+          _vm._v(
+            "\n                " +
+              _vm._s(_vm.fechasCaja_Global.fecha_cierre) +
+              "\n            "
+          )
+        ]),
+        _vm._v(" "),
+        _c("td", { staticClass: "w-50 text-right" }, [
+          _vm._v(
+            "\n                " +
+              _vm._s(_vm.fechasCaja_Global.hora_cierre) +
+              "\n            "
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("hr", {
+      staticClass: "my-3",
+      staticStyle: { "border-top": "3px dashed black" }
+    }),
+    _vm._v(" "),
+    _vm._m(4),
+    _vm._v(" "),
+    _c("hr", {
+      staticClass: "my-3",
+      staticStyle: { "border-top": "3px dashed black" }
+    }),
+    _vm._v(" "),
+    _c("table", { staticStyle: { width: "250px" } }, [
+      _vm._m(5),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.ventasCerrarCaja_Global, function(item, index) {
+          return _c("tr", { key: index }, [
+            _c("td", { staticClass: "text-center align-top" }, [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(index + 1) +
+                  "\n                "
+              )
+            ]),
+            _vm._v(" "),
+            _c("td", { staticClass: "text-center align-top" }, [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(item.id) +
+                  "\n                "
+              )
+            ]),
+            _vm._v(" "),
+            _c("td", { staticClass: "text-center align-top" }, [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(item.total.toFixed(2)) +
+                  "\n                "
+              )
+            ]),
+            _vm._v(" "),
+            _c("td", { staticClass: "text-center align-top" }, [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(item.metodoPago) +
+                  "\n                "
+              )
+            ]),
+            _vm._v(" "),
+            _c("td", { staticClass: "text-center align-top" }, [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(item.detalleMetodoPago) +
+                  "\n                "
+              )
+            ])
+          ])
+        }),
+        0
+      )
+    ]),
+    _vm._v(" "),
+    _c("hr", {
+      staticClass: "my-3",
+      staticStyle: { "border-top": "3px dashed black" }
+    }),
+    _vm._v(" "),
+    _vm._m(6),
+    _vm._v(" "),
+    _c("hr", {
+      staticClass: "my-3",
+      staticStyle: { "border-top": "3px dashed black" }
+    }),
+    _vm._v(" "),
+    _c("table", { staticStyle: { width: "250px" } }, [
+      _c("tfoot", [
+        _c("tr", [
+          _c("td", { staticStyle: { width: "25%" } }, [
+            _c("b", [
+              _vm._v(
+                "Efectivo (" +
+                  _vm._s(_vm.datosDetalleCaja_Global.CantidadVentaEfectivo) +
+                  "): "
+              )
+            ]),
+            _vm._v(
+              _vm._s(_vm.datosDetalleCaja_Global.SumaVentaEfectivo.toFixed(2)) +
+                "\n                "
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("tr", [
+          _c("td", { staticStyle: { width: "25%" } }, [
+            _c("b", [
+              _vm._v(
+                "Tarj. Cred/Deb (" +
+                  _vm._s(_vm.datosDetalleCaja_Global.CantidadVentaTarjeta) +
+                  "): "
+              )
+            ]),
+            _vm._v(
+              _vm._s(_vm.datosDetalleCaja_Global.SumaVentaTarjeta.toFixed(2)) +
+                "\n                "
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("tr", [
+          _c("td", { staticStyle: { width: "25%" } }, [
+            _c("b", [
+              _vm._v(
+                "Billetera Movil (" +
+                  _vm._s(
+                    _vm.datosDetalleCaja_Global.CantidadVentaBilleteraMovil
+                  ) +
+                  "): "
+              )
+            ]),
+            _vm._v(
+              _vm._s(
+                _vm.datosDetalleCaja_Global.SumaVentaBilleteraMovil.toFixed(2)
+              ) + "\n                "
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("tr", [
+          _c("td", { staticStyle: { width: "25%" } }, [
+            _c("b", [_vm._v("TOTAL:")]),
+            _vm._v(
+              "\n                    " +
+                _vm._s(_vm.datosDetalleCaja_Global.TotalVentaCaja.toFixed(2)) +
+                "\n                "
+            )
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("hr", {
+      staticClass: "my-3",
+      staticStyle: { "border-top": "3px dashed black" }
+    }),
+    _vm._v(" "),
+    _vm._m(7),
+    _vm._v(" "),
+    _c("hr", {
+      staticClass: "my-3",
+      staticStyle: { "border-top": "3px dashed black" }
+    }),
+    _vm._v("\n    " + _vm._s(_vm.prueba) + "\n")
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "text-center" }, [
+      _c("b", [_vm._v("COPIA SIN VALOR")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [_c("b", [_vm._v("CIERRE DE CAJA")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td", { staticClass: "w-50 text-left" }, [
+        _c("b", [_vm._v("Fecha Inicio: ")])
+      ]),
+      _vm._v(" "),
+      _c("td", { staticClass: "w-50 text-right" }, [
+        _c("b", [_vm._v("Hora Inicio: ")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td", { staticClass: "w-50 text-left" }, [
+        _c("b", [_vm._v("Fecha Cierre: ")])
+      ]),
+      _vm._v(" "),
+      _c("td", { staticClass: "w-50 text-right" }, [
+        _c("b", [_vm._v("Hora Cierre: ")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "text-center" }, [
+      _c("b", [_vm._v("COPIA SIN VALOR")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c(
+          "th",
+          { staticClass: "text-center", staticStyle: { width: "10%" } },
+          [_vm._v("N°")]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          { staticClass: "text-center", staticStyle: { width: "15%" } },
+          [_vm._v("Ticket")]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          { staticClass: "px-1 text-center", staticStyle: { width: "15%" } },
+          [_vm._v("Total")]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          { staticClass: "px-1 text-center", staticStyle: { width: "30%" } },
+          [_vm._v("\n                    Metodo Pago\n                ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          { staticClass: "px-1 text-center", staticStyle: { width: "30%" } },
+          [_vm._v("Detalle")]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "text-center" }, [
+      _c("b", [_vm._v("COPIA SIN VALOR")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "text-center" }, [
+      _c("b", [_vm._v("COPIA SIN VALOR")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -45743,7 +46297,13 @@ var render = function() {
                                   "a",
                                   {
                                     staticClass: "btn btn-success btn-sm",
-                                    on: { click: _vm.imprimirCaja }
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.generarCopiaTicketCaja(
+                                          item.id
+                                        )
+                                      }
+                                    }
                                   },
                                   [
                                     _vm._v(

@@ -315,7 +315,7 @@ export default {
             };
 
             axios.put(`caja/${idCaja}`, cerrarCaja).then(res => {
-                this.generarTicketCerrarCaja();
+                this.generarTicketCerrarCaja(this.caja[0].id);
                 axios.get("caja/create").then(res => {
                     this.caja = res.data;
                     axios.get("caja").then(res => {
@@ -325,8 +325,8 @@ export default {
                 });
             });
         },
-        generarTicketCerrarCaja() {
-            const idCaja = this.caja[0].id;
+        generarTicketCerrarCaja(id_caja) {
+            const idCaja = id_caja;
             window.open(
                 "./ticket-cerrar-caja?id=" + idCaja,
                 "_blank",

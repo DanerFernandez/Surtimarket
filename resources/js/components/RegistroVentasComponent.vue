@@ -63,7 +63,7 @@
                                     </a>
                                     <a
                                         class="btn btn-success btn-sm"
-                                        @click="imprimirCaja"
+                                        @click="generarCopiaTicketCaja(item.id)"
                                     >
                                         Imprimir
                                     </a>
@@ -195,6 +195,14 @@ export default {
             const idCaja = id_venta;
             window.open(
                 "./copia-ticket-venta?id=" + id_venta,
+                "_blank",
+                "width=800,height=600"
+            );
+        },
+        generarCopiaTicketCaja(id_caja){
+            const idCaja = id_caja;
+            window.open(
+                "./copia-ticket-caja?id=" + idCaja,
                 "_blank",
                 "width=800,height=600"
             );

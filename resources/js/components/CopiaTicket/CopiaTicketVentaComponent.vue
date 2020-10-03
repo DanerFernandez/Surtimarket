@@ -145,11 +145,12 @@ export default {
     created() {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
+        const id_venta = urlParams.get("id");
         this.idVenta_Global = urlParams.get("id");
 
-        this.fechaHoraConfiguradaPeru(urlParams.get("id"));
-        this.obtenerDatosVenta(urlParams.get("id"));
-        this.obtenerDatosDetalleVenta(urlParams.get("id"));
+        this.fechaHoraConfiguradaPeru(id_venta);
+        this.obtenerDatosVenta(id_venta);
+        this.obtenerDatosDetalleVenta(id_venta);
     },
     mounted() {
         setTimeout(imprimir, 1000);
