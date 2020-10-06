@@ -61,76 +61,79 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12 form-group">
-                                    <label>Nombre</label>
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        placeholder="Nombre"
-                                        v-model="productoAumentar.nombre"
-                                        disabled
-                                    />
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    <label>Stock</label>
-                                    <input
-                                        type="number"
-                                        class="form-control"
-                                        placeholder="Stock"
-                                        v-model="productoAumentar.stock"
-                                        disabled
-                                    />
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    <label>Stock Minimo</label>
-                                    <input
-                                        type="number"
-                                        class="form-control"
-                                        placeholder="Stock Minimo"
-                                        v-model="productoAumentar.stock_minimo"
-                                        disabled
-                                    />
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    <label>Aumentar</label>
-                                    <input
-                                        type="number"
-                                        class="form-control"
-                                        placeholder="Aumentar"
-                                        v-model.number="
-                                            productoAumentar.aumentar
-                                        "
-                                    />
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    <label><b>Nuevo Stock</b></label>
-                                    <input
-                                        type="number"
-                                        class="form-control"
-                                        placeholder="Nuevo Stock"
-                                        v-model="nuevoStock"
-                                        disabled
-                                    />
+                        <form @submit.prevent="aumentar">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12 form-group">
+                                        <label>Nombre</label>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            placeholder="Nombre"
+                                            v-model="productoAumentar.nombre"
+                                            disabled
+                                        />
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label>Stock</label>
+                                        <input
+                                            type="number"
+                                            class="form-control"
+                                            placeholder="Stock"
+                                            v-model="productoAumentar.stock"
+                                            disabled
+                                        />
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label>Stock Minimo</label>
+                                        <input
+                                            type="number"
+                                            class="form-control"
+                                            placeholder="Stock Minimo"
+                                            v-model="
+                                                productoAumentar.stock_minimo
+                                            "
+                                            disabled
+                                        />
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label>Aumentar</label>
+                                        <input
+                                            id="form_aumentar"
+                                            type="number"
+                                            class="form-control"
+                                            placeholder="Aumentar"
+                                            v-model.number="
+                                                productoAumentar.aumentar
+                                            "
+                                        />
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label><b>Nuevo Stock</b></label>
+                                        <input
+                                            type="number"
+                                            class="form-control"
+                                            placeholder="Nuevo Stock"
+                                            v-model="nuevoStock"
+                                            disabled
+                                        />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-footer">
-                            <button
-                                type="button"
-                                class="btn btn-warning btn-block"
-                                @click="aumentar"
-                                data-dismiss="modal"
-                            >
-                                Aumentar
-                            </button>
-                        </div>
+                            <div class="card-footer">
+                                <button
+                                    type="submit"
+                                    class="btn btn-warning btn-block"
+                                >
+                                    Aumentar
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-        {{calcularNuevoStock}}
+        {{ calcularNuevoStock }}
     </div>
 </template>
 <script>
@@ -148,8 +151,9 @@ export default {
         });
     },
     computed: {
-        calcularNuevoStock(){
-            this.nuevoStock = this.productoAumentar.stock + this.productoAumentar.aumentar
+        calcularNuevoStock() {
+            this.nuevoStock =
+                this.productoAumentar.stock + this.productoAumentar.aumentar;
         }
     },
     methods: {
@@ -164,6 +168,11 @@ export default {
                 };
             });
             $("#aumentarStockModal").modal("show");
+            setTimeout(focus, 500);
+            function focus() {
+                $("#form_aumentar").focus();
+                $("#form_aumentar").select();
+            }
         },
         aumentar() {
             axios
@@ -171,6 +180,7 @@ export default {
                 .then(res => {
                     axios.post("escaso-stock").then(res => {
                         this.escasoStock = res.data;
+                        $("#aumentarStockModal").modal("hide");
                     });
                 });
         }

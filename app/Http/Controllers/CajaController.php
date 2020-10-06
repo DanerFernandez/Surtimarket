@@ -111,7 +111,7 @@ class CajaController extends Controller
         ->select('ventas.id','users.name','ventas.id_caja','ventas.total',
         'ventas.metodoPago','ventas.detalleMetodoPago','ventas.estado','ventas.created_at','ventas.updated_at')
         ->where('ventas.id_caja','=', $request->id)
-        ->orderBy('ventas.id','asc')
+        ->orderBy('ventas.id','desc')
         ->get();
         return $ventas;
 

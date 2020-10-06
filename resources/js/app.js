@@ -20,14 +20,13 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('venta-component', require('./components/VentaComponent.vue').default);
+Vue.component('venta-component', require('./components/Venta/VentaComponent.vue').default);
+Vue.component('ticket-venta-component', require('./components/Venta/TicketVenta.vue').default);
 
 Vue.component('caja-component', require('./components/Caja/CajaComponent.vue').default);
 Vue.component('anular-venta-caja-component', require('./components/Caja/AnularVentaCajaComponent.vue').default);
 Vue.component('ticket-cerrar-caja-component', require('./components/Caja/TicketCerrarCajaComponent.vue').default);
 Vue.component('ventas-realizadas-caja-component', require('./components/Caja/VentasRealizadasCajaComponent.vue').default);
-
-Vue.component('inicio-component', require('./components/InicioComponent.vue').default);
 
 Vue.component('producto-editar-component', require('./components/Producto/ProductoEditarComponent.vue').default);
 Vue.component('producto-crear-component', require('./components/Producto/ProductoCrearComponent.vue').default);
@@ -38,12 +37,10 @@ Vue.component('personal-editar-component', require('./components/Personal/Person
 
 Vue.component('registro-ventas-component', require('./components/RegistroVentasComponent.vue').default);
 
-Vue.component('ticket-venta-component', require('./components/TicketVenta.vue').default);
-
 Vue.component('copia-ticket-venta-component', require('./components/CopiaTicket/CopiaTicketVentaComponent.vue').default);
 Vue.component('copia-ticket-caja-component', require('./components/CopiaTicket/CopiaTicketCajaComponent.vue').default);
 
-
+Vue.component('mensaje-inicio-component', require('./components/MensajeInicioComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

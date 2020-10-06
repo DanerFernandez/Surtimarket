@@ -3,13 +3,30 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header text-center">
-                    <span v-if="verVentasRealizadas" style="float: left">
-                        <a class="btn btn-sm btn-light" @click="verVentasRealizadas = false">◄   ATRAS</a>
+                    <span class="text-center" v-if="verVentasRealizadas">
+                        <a
+                            style="float: left"
+                            class="btn btn-sm btn-light"
+                            @click="verVentasRealizadas = false"
+                            >◄   ATRAS</a
+                        >
+                        Ventas Realizadas
                     </span>
-                    <span v-if="verAnularVentas" style="float: left">
-                        <a class="btn btn-sm btn-light" @click="verAnularVentas = false">◄   ATRAS</a>
+                    <span class="text-center" v-if="verAnularVentas">
+                        <a
+                            style="float: left"
+                            class="btn btn-sm btn-light"
+                            @click="verAnularVentas = false"
+                            >◄   ATRAS</a
+                        >
+                        Anular Venta
                     </span>
-                    Caja
+                    <span
+                        class="text-center"
+                        v-if="!verAnularVentas && !verVentasRealizadas"
+                    >
+                        <span style="">Caja</span>
+                    </span>
                 </div>
                 <div class="card-body">
                     <div v-if="caja.length === 0">
