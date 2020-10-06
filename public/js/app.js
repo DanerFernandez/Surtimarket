@@ -2221,11 +2221,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2310,6 +2305,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2871,9 +2874,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
 //
 //
 //
@@ -4795,6 +4795,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -41539,19 +41540,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c(
-      "a",
-      {
-        staticClass: "btn btn-block btn-dark",
-        on: {
-          click: function($event) {
-            return _vm.$emit("respuesta", false)
-          }
-        }
-      },
-      [_vm._v("Regresar")]
-    ),
-    _vm._v(" "),
-    _c(
       "form",
       {
         on: {
@@ -42130,7 +42118,42 @@ var render = function() {
   return _c("div", [
     _c("div", { staticClass: "col-md-12" }, [
       _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "card-header text-center" }, [_vm._v("Caja")]),
+        _c("div", { staticClass: "card-header text-center" }, [
+          _vm.verVentasRealizadas
+            ? _c("span", { staticStyle: { float: "left" } }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-sm btn-light",
+                    on: {
+                      click: function($event) {
+                        _vm.verVentasRealizadas = false
+                      }
+                    }
+                  },
+                  [_vm._v("◄   ATRAS")]
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.verAnularVentas
+            ? _c("span", { staticStyle: { float: "left" } }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-sm btn-light",
+                    on: {
+                      click: function($event) {
+                        _vm.verAnularVentas = false
+                      }
+                    }
+                  },
+                  [_vm._v("◄   ATRAS")]
+                )
+              ])
+            : _vm._e(),
+          _vm._v("\n                Caja\n            ")
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
           _vm.caja.length === 0
@@ -42919,19 +42942,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "a",
-      {
-        staticClass: "btn btn-block btn-dark",
-        on: {
-          click: function($event) {
-            return _vm.$emit("respuesta", false)
-          }
-        }
-      },
-      [_vm._v("Regresar")]
-    ),
-    _vm._v(" "),
     _c(
       "div",
       { staticClass: "scrollable-lg", attrs: { id: "scroll-carrito" } },
@@ -46286,6 +46296,17 @@ var render = function() {
   return _c("div", [
     _c("div", { staticClass: "card" }, [
       _c("div", { staticClass: "card-header text-center" }, [
+        _vm.lista_ventas
+          ? _c(
+              "a",
+              {
+                staticClass: "btn btn-light btn-sm",
+                staticStyle: { float: "left" },
+                on: { click: _vm.regresarVentaCaja }
+              },
+              [_vm._v("◄   ATRAS")]
+            )
+          : _vm._e(),
         _vm._v("\n            Registro\n        ")
       ]),
       _vm._v(" "),
@@ -46382,17 +46403,6 @@ var render = function() {
                     )
                   : _vm._e()
               ]
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.lista_ventas
-          ? _c(
-              "a",
-              {
-                staticClass: "btn btn-block btn-dark",
-                on: { click: _vm.regresarVentaCaja }
-              },
-              [_vm._v("Regresar")]
             )
           : _vm._e(),
         _vm._v(" "),
@@ -46807,7 +46817,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "td",
-          { staticClass: "text-center", staticStyle: { width: "20%" } },
+          { staticClass: "text-center", staticStyle: { width: "40%" } },
           [
             _vm._v(
               "\n                " +
@@ -46824,7 +46834,7 @@ var render = function() {
         ? _c("tr", [
             _c(
               "td",
-              { staticClass: "text-right", staticStyle: { width: "80%" } },
+              { staticClass: "text-right", staticStyle: { width: "60%" } },
               [
                 _c("b", [
                   _vm._v(_vm._s(_vm.data_venta_users_Global.metodoPago) + ": ")
@@ -46834,7 +46844,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "td",
-              { staticClass: "text-center", staticStyle: { width: "20%" } },
+              { staticClass: "text-center", staticStyle: { width: "40%" } },
               [
                 _c("span", [
                   _vm._v(
@@ -46857,7 +46867,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "td",
-              { staticClass: "text-center", staticStyle: { width: "20%" } },
+              { staticClass: "text-center", staticStyle: { width: "40%" } },
               [
                 _c("span", [
                   _vm._v(
@@ -46881,7 +46891,7 @@ var render = function() {
         ? _c("tr", [
             _c(
               "td",
-              { staticClass: "text-right", staticStyle: { width: "80%" } },
+              { staticClass: "text-right", staticStyle: { width: "60%" } },
               [
                 _c("b", [
                   _vm._v(_vm._s(_vm.data_venta_users_Global.metodoPago) + ": ")
@@ -46891,7 +46901,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "td",
-              { staticClass: "text-center", staticStyle: { width: "20%" } },
+              { staticClass: "text-center", staticStyle: { width: "40%" } },
               [
                 _c("span", [
                   _vm._v(_vm._s(_vm.data_venta_users_Global.detalleMetodoPago))
@@ -46969,7 +46979,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "td",
-      { staticClass: "text-right", staticStyle: { width: "80%" } },
+      { staticClass: "text-right", staticStyle: { width: "60%" } },
       [_c("b", [_vm._v("Total: ")])]
     )
   },
@@ -46979,7 +46989,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "td",
-      { staticClass: "text-right", staticStyle: { width: "80%" } },
+      { staticClass: "text-right", staticStyle: { width: "60%" } },
       [_c("b", [_vm._v("Vuelto: ")])]
     )
   },

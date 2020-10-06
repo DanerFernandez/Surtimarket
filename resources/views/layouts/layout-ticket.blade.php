@@ -23,7 +23,7 @@
     body{
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         line-height: 14px !important;
-        font-size: 13px !important;
+        font-size: 11px !important;
         color: black !important;
     }
 </style>

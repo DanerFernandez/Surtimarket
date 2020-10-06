@@ -1,10 +1,5 @@
 <template>
     <div>
-        <a
-            class="btn btn-block btn-dark"
-            @click="$emit('respuesta', false)"
-            >Regresar</a
-        >
         <form @submit.prevent="informacionTicket">
             <div class="card-body">
                 <div class="col-md-12 form-group">

@@ -71,18 +71,18 @@
         <hr class="my-3" style="border-top: 3px dashed black;" />
         <table style="width: 250px">
             <tr>
-                <td class="text-right" style="width: 80%;">
+                <td class="text-right" style="width: 60%;">
                     <b>Total: </b>
                 </td>
-                <td class="text-center" style="width: 20%;">
+                <td class="text-center" style="width: 40%;">
                     {{ parseFloat(data_venta_users_Global.total).toFixed(2) }}
                 </td>
             </tr>
             <tr v-if="data_venta_users_Global.metodoPago == 'Efectivo'">
-                <td class="text-right" style="width: 80%;">
+                <td class="text-right" style="width: 60%;">
                     <b>{{ data_venta_users_Global.metodoPago }}: </b>
                 </td>
-                <td class="text-center" style="width: 20%;">
+                <td class="text-center" style="width: 40%;">
                     <span>
                         {{
                             parseFloat(
@@ -93,10 +93,10 @@
                 </td>
             </tr>
             <tr v-if="data_venta_users_Global.metodoPago == 'Efectivo'">
-                <td class="text-right" style="width: 80%;">
+                <td class="text-right" style="width: 60%;">
                     <b>Vuelto: </b>
                 </td>
-                <td class="text-center" style="width: 20%;">
+                <td class="text-center" style="width: 40%;">
                     <span>
                         {{
                             (
@@ -110,10 +110,10 @@
                 </td>
             </tr>
             <tr v-if="data_venta_users_Global.metodoPago != 'Efectivo'">
-                <td class="text-right" style="width: 80%;">
+                <td class="text-right" style="width: 60%;">
                     <b>{{ data_venta_users_Global.metodoPago }}: </b>
                 </td>
-                <td class="text-center" style="width: 20%;">
+                <td class="text-center" style="width: 40%;">
                     <span>{{ data_venta_users_Global.detalleMetodoPago }}</span>
                 </td>
             </tr>

@@ -1,8 +1,5 @@
 <template>
     <div>
-        <a class="btn btn-block btn-dark" @click="$emit('respuesta', false)"
-            >Regresar</a
-        >
         <div class="scrollable-lg" id="scroll-carrito">
             <table class="table text-center table-hover">
                 <thead>

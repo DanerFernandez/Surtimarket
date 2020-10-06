@@ -2,6 +2,12 @@
     <div>
         <div class="card">
             <div class="card-header text-center">
+                <a
+                    class="btn btn-light btn-sm" style="float: left"
+                    v-if="lista_ventas"
+                    @click="regresarVentaCaja"
+                    >◄   ATRAS</a
+                >
                 Registro
             </div>
             <div class="card-body">
@@ -73,12 +79,7 @@
                     </table>
                 </div>
 
-                <a
-                    class="btn btn-block btn-dark"
-                    v-if="lista_ventas"
-                    @click="regresarVentaCaja"
-                    >Regresar</a
-                >
+                
                 <div class="scrollable-lg" id="scroll-carrito" v-if="lista_ventas">
                     <table
                         class="table text-center table-hover"

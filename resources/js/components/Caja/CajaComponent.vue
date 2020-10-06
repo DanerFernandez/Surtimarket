@@ -2,7 +2,15 @@
     <div>
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header text-center">Caja</div>
+                <div class="card-header text-center">
+                    <span v-if="verVentasRealizadas" style="float: left">
+                        <a class="btn btn-sm btn-light" @click="verVentasRealizadas = false">◄   ATRAS</a>
+                    </span>
+                    <span v-if="verAnularVentas" style="float: left">
+                        <a class="btn btn-sm btn-light" @click="verAnularVentas = false">◄   ATRAS</a>
+                    </span>
+                    Caja
+                </div>
                 <div class="card-body">
                     <div v-if="caja.length === 0">
                         <p class="text-center">
