@@ -2,19 +2,19 @@
     <div>
         <div class="card">
             <div class="card-header text-center">
-                Escaso Stock
+                Casi sin existencias
             </div>
-            <div class="card-body">
+            <div class="card-body scrollable-sm" id="scroll-carrito" style="padding: 0px">
                 <table class="table text-center table-hover">
                     <thead>
                         <tr style="background-color: #f5eefe !important">
-                            <th scope="col">#</th>
-                            <th scope="col">Codigo</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Precio</th>
-                            <th scope="col">Stock</th>
-                            <th scope="col">Stock Minimo</th>
-                            <th scope="col">Acción</th>
+                            <th class="sticky-table-header" scope="col">#</th>
+                            <th class="sticky-table-header" scope="col">Codigo</th>
+                            <th class="sticky-table-header" scope="col">Nombre</th>
+                            <th class="sticky-table-header" scope="col">Precio</th>
+                            <th class="sticky-table-header" scope="col">Stock</th>
+                            <th class="sticky-table-header" scope="col">Stock Minimo</th>
+                            <th class="sticky-table-header" scope="col">Acción</th>
                         </tr>
                     </thead>
                     <tbody>

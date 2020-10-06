@@ -3459,7 +3459,63 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      escasoStock: ""
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.post("escaso-stock").then(function (res) {
+      _this.escasoStock = res.data;
+    });
+  }
+});
 
 /***/ }),
 
@@ -43923,9 +43979,85 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    hola :v\n")])
+  return _c("div", [
+    _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card-header" }, [
+        _vm._v("\n            Mensaje\n        ")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _c("div", { staticClass: "scrollable-sm" }, [
+          _c("table", { staticClass: "table text-center table-hover " }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.escasoStock, function(item, index) {
+                return _c("tr", { key: index }, [
+                  _c("th", { attrs: { scope: "row" } }, [
+                    _vm._v(_vm._s(index + 1))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(item.id))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(item.nombre))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("S/. " + _vm._s(item.precio))]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-danger" }, [
+                    _c("b", [_vm._v(_vm._s(item.stock))])
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(item.stock_minimo))]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "btn btn-warning btn-sm",
+                        on: {
+                          click: function($event) {
+                            return _vm.producto_aumentar(item.id)
+                          }
+                        }
+                      },
+                      [_vm._v("Aumentar")]
+                    )
+                  ])
+                ])
+              }),
+              0
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", { staticStyle: { "background-color": "#f5eefe !important" } }, [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Codigo")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Nombre")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Precio")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Stock")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Stock Minimo")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Acción")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -45891,53 +46023,61 @@ var render = function() {
   return _c("div", [
     _c("div", { staticClass: "card" }, [
       _c("div", { staticClass: "card-header text-center" }, [
-        _vm._v("\n            Escaso Stock\n        ")
+        _vm._v("\n            Casi sin existencias\n        ")
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _c("table", { staticClass: "table text-center table-hover" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "tbody",
-            _vm._l(_vm.escasoStock, function(item, index) {
-              return _c("tr", { key: index }, [
-                _c("th", { attrs: { scope: "row" } }, [
-                  _vm._v(_vm._s(index + 1))
-                ]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(item.id))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(item.nombre))]),
-                _vm._v(" "),
-                _c("td", [_vm._v("S/. " + _vm._s(item.precio))]),
-                _vm._v(" "),
-                _c("td", { staticClass: "text-danger" }, [
-                  _c("b", [_vm._v(_vm._s(item.stock))])
-                ]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(item.stock_minimo))]),
-                _vm._v(" "),
-                _c("td", [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "btn btn-warning btn-sm",
-                      on: {
-                        click: function($event) {
-                          return _vm.producto_aumentar(item.id)
+      _c(
+        "div",
+        {
+          staticClass: "card-body scrollable-sm",
+          staticStyle: { padding: "0px" },
+          attrs: { id: "scroll-carrito" }
+        },
+        [
+          _c("table", { staticClass: "table text-center table-hover" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.escasoStock, function(item, index) {
+                return _c("tr", { key: index }, [
+                  _c("th", { attrs: { scope: "row" } }, [
+                    _vm._v(_vm._s(index + 1))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(item.id))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(item.nombre))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("S/. " + _vm._s(item.precio))]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-danger" }, [
+                    _c("b", [_vm._v(_vm._s(item.stock))])
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(item.stock_minimo))]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "btn btn-warning btn-sm",
+                        on: {
+                          click: function($event) {
+                            return _vm.producto_aumentar(item.id)
+                          }
                         }
-                      }
-                    },
-                    [_vm._v("Aumentar")]
-                  )
+                      },
+                      [_vm._v("Aumentar")]
+                    )
+                  ])
                 ])
-              ])
-            }),
-            0
-          )
-        ])
-      ])
+              }),
+              0
+            )
+          ])
+        ]
+      )
     ]),
     _vm._v(" "),
     _c(
@@ -46169,19 +46309,47 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", { staticStyle: { "background-color": "#f5eefe !important" } }, [
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
+        _c(
+          "th",
+          { staticClass: "sticky-table-header", attrs: { scope: "col" } },
+          [_vm._v("#")]
+        ),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Codigo")]),
+        _c(
+          "th",
+          { staticClass: "sticky-table-header", attrs: { scope: "col" } },
+          [_vm._v("Codigo")]
+        ),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Nombre")]),
+        _c(
+          "th",
+          { staticClass: "sticky-table-header", attrs: { scope: "col" } },
+          [_vm._v("Nombre")]
+        ),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Precio")]),
+        _c(
+          "th",
+          { staticClass: "sticky-table-header", attrs: { scope: "col" } },
+          [_vm._v("Precio")]
+        ),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Stock")]),
+        _c(
+          "th",
+          { staticClass: "sticky-table-header", attrs: { scope: "col" } },
+          [_vm._v("Stock")]
+        ),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Stock Minimo")]),
+        _c(
+          "th",
+          { staticClass: "sticky-table-header", attrs: { scope: "col" } },
+          [_vm._v("Stock Minimo")]
+        ),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Acción")])
+        _c(
+          "th",
+          { staticClass: "sticky-table-header", attrs: { scope: "col" } },
+          [_vm._v("Acción")]
+        )
       ])
     ])
   },

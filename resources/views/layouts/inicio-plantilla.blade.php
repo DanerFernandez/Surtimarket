@@ -55,14 +55,6 @@
         @endif
     </div>
     <div class="col-md-6 text-center mt-4">
-        <div class="card">
-            <div class="card-header">
-                sdas
-            </div>
-            <div class="card-body">
-                <mensaje-inicio-component/>
-            </div>
-        </div>
-        
+        <producto-escaso-component/>
     </div>
 </div>
