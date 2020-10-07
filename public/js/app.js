@@ -2286,6 +2286,7 @@ __webpack_require__.r(__webpack_exports__);
         id: this.ticket
       };
       axios.post("anular-ticket-venta", params).then(function (res) {
+        console.log(res.data);
         _this5.mensaje = res.data;
         $("#mensajeModal").modal("show");
         _this5.ticket = "";
@@ -2891,6 +2892,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4782,7 +4788,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      escasoStock: "",
+      escasoStock: [],
       productoAumentar: "",
       nuevoStock: 0
     };
@@ -4844,6 +4850,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -43061,24 +43072,43 @@ var render = function() {
                     ])
                   : _vm._e(),
                 _vm._v(" "),
-                _c("td", [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "btn btn-success btn-sm",
-                      on: {
-                        click: function($event) {
-                          return _vm.generarCopiaTicketVenta(item.id)
-                        }
-                      }
-                    },
-                    [
-                      _vm._v(
-                        "\n                            Imprimir Ticket\n                        "
+                item.estado == 0
+                  ? _c("td", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger btn-sm",
+                          attrs: { disabled: "" }
+                        },
+                        [
+                          _vm._v(
+                            "\n                            Imprimir Ticket\n                        "
+                          )
+                        ]
                       )
-                    ]
-                  )
-                ])
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                item.estado == 1
+                  ? _c("td", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success btn-sm",
+                          on: {
+                            click: function($event) {
+                              return _vm.generarCopiaTicketVenta(item.id)
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                            Imprimir Ticket\n                        "
+                          )
+                        ]
+                      )
+                    ])
+                  : _vm._e()
               ])
             }),
             0
@@ -46021,64 +46051,66 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-header text-center" }, [
-        _vm._v("\n            Casi sin existencias\n        ")
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "card-body scrollable-sm",
-          staticStyle: { padding: "0px" },
-          attrs: { id: "scroll-carrito" }
-        },
-        [
-          _c("table", { staticClass: "table text-center table-hover" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "tbody",
-              _vm._l(_vm.escasoStock, function(item, index) {
-                return _c("tr", { key: index }, [
-                  _c("th", { attrs: { scope: "row" } }, [
-                    _vm._v(_vm._s(index + 1))
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(item.id))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(item.nombre))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("S/. " + _vm._s(item.precio))]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "text-danger" }, [
-                    _c("b", [_vm._v(_vm._s(item.stock))])
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(item.stock_minimo))]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "btn btn-warning btn-sm",
-                        on: {
-                          click: function($event) {
-                            return _vm.producto_aumentar(item.id)
-                          }
-                        }
-                      },
-                      [_vm._v("Aumentar")]
-                    )
-                  ])
-                ])
-              }),
-              0
-            )
-          ])
-        ]
-      )
-    ]),
+    _vm.escasoStock.length > 0
+      ? _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header text-center" }, [
+            _vm._v("\n            Producto con poco stock\n        ")
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "card-body scrollable-sm",
+              staticStyle: { padding: "0px" },
+              attrs: { id: "scroll-carrito" }
+            },
+            [
+              _c("table", { staticClass: "table text-center table-hover" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.escasoStock, function(item, index) {
+                    return _c("tr", { key: index }, [
+                      _c("th", { attrs: { scope: "row" } }, [
+                        _vm._v(_vm._s(index + 1))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(item.id))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(item.nombre))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("S/. " + _vm._s(item.precio))]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-danger" }, [
+                        _c("b", [_vm._v(_vm._s(item.stock))])
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(item.stock_minimo))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-warning btn-sm",
+                            on: {
+                              click: function($event) {
+                                return _vm.producto_aumentar(item.id)
+                              }
+                            }
+                          },
+                          [_vm._v("Aumentar")]
+                        )
+                      ])
+                    ])
+                  }),
+                  0
+                )
+              ])
+            ]
+          )
+        ])
+      : _vm._e(),
     _vm._v(" "),
     _c(
       "div",
@@ -46582,26 +46614,45 @@ var render = function() {
                                   ])
                                 : _vm._e(),
                               _vm._v(" "),
-                              _c("td", [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "btn btn-success btn-sm",
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.generarCopiaTicketVenta(
-                                          item.id
+                              item.estado == 0
+                                ? _c("td", [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-danger btn-sm",
+                                        attrs: { disabled: "" }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                    Imprimir Copia\n                                "
                                         )
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                                    Imprimir Copia\n                                "
+                                      ]
                                     )
-                                  ]
-                                )
-                              ])
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              item.estado == 1
+                                ? _c("td", [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-success btn-sm",
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.generarCopiaTicketVenta(
+                                              item.id
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                    Imprimir Copia\n                                "
+                                        )
+                                      ]
+                                    )
+                                  ])
+                                : _vm._e()
                             ])
                           }),
                           0

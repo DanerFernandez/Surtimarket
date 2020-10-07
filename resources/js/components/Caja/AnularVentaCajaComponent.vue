@@ -370,9 +370,12 @@ export default {
                 id: this.ticket
             };
             axios.post("anular-ticket-venta", params).then(res => {
+                console.log(res.data)
+                
                 this.mensaje = res.data;
                 $("#mensajeModal").modal("show");
                 this.ticket = "";
+                
             });
         }
     }

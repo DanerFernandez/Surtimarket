@@ -54,10 +54,15 @@
                         <td v-if="item.estado == 0" class="text-danger">
                             ANULADO
                         </td>
-                        <td>
-                            <a class="btn btn-success btn-sm" @click="generarCopiaTicketVenta(item.id)">
+                        <td v-if="item.estado == 0">
+                            <button class="btn btn-danger btn-sm" disabled>
                                 Imprimir Ticket
-                            </a>
+                            </button>
+                        </td>
+                        <td v-if="item.estado == 1">
+                            <button class="btn btn-success btn-sm" @click="generarCopiaTicketVenta(item.id)">
+                                Imprimir Ticket
+                            </button>
                         </td>
                     </tr>
                 </tbody>

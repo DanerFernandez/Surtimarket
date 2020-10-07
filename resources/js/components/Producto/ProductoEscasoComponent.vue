@@ -1,8 +1,8 @@
 <template>
     <div>
-        <div class="card">
+        <div class="card" v-if="escasoStock.length > 0">
             <div class="card-header text-center">
-                Casi sin existencias
+                Producto con poco stock
             </div>
             <div class="card-body scrollable-sm" id="scroll-carrito" style="padding: 0px">
                 <table class="table text-center table-hover">
@@ -140,7 +140,7 @@
 export default {
     data() {
         return {
-            escasoStock: "",
+            escasoStock: [],
             productoAumentar: "",
             nuevoStock: 0
         };

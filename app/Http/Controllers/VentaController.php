@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Venta;
+use App\Producto;
+use App\DetalleVenta;
 
 class VentaController extends Controller
 {
@@ -111,9 +113,22 @@ class VentaController extends Controller
 
     public function anularTicketVenta(Request $request)
     {
+
+        $detalleVenta = DetalleVenta::select('id_producto','cantidad')->where('id_venta',$request->id)->get();
+        $asd = '';
+        foreach ($detalleVenta as $key => $value) {
+            $producto = Producto::findOrFail($value->id_producto);
+            $producto->stock = $producto->stock + $value->cantidad;
+            $producto->save();
+        }
+        
+
         $ticket = Venta::findOrFail($request->id);
+
         $ticket->estado = 0;
         $ticket->save();
-        return 'El ticket ha sido anulado.';
+
+        
+        return 'Ticket anulado correctamente';
     }
 }

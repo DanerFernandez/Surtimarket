@@ -19,6 +19,7 @@
                         Editar Producto
                     </button>
                 </a>
+                <!--
                 <a href="{{ route('vista-escaso-producto') }}">
                     <button type="submit" class="btn btn-light btn-sq-lg mx-3">
                         <img src="..\resources\views\imagenes\box-important-80x80.png"/>
@@ -26,6 +27,7 @@
                         Escaso Stock
                     </button>
                 </a>
+            -->
             </div>
             
         </div>
