@@ -16,7 +16,8 @@
             <span>N° de Caja: {{ data_venta_users_Global.id_caja }}</span>
         </div>
         <div style="width: 250px" class="mt-3">
-            <b>Cajero(a): </b><span>{{ data_venta_users_Global.name }}</span>
+            <b>Cajero(a): </b><br/>
+            <span>{{ data_venta_users_Global.name }}</span>
         </div>
         <table style="width:250px">
             <tr>

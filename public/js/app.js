@@ -2256,10 +2256,10 @@ __webpack_require__.r(__webpack_exports__);
           _this2.data_venta_users_Global = res.data;
           $("#informacionTicketModal").modal("show");
         } else {
-          alert("No se puede anular el ticket.");
+          alert("El ticket no puede anularse.");
         }
       })["catch"](function (error) {
-        alert("El número de ticket no existe en la base de datos.");
+        alert("El ticket no existe en la base de datos.");
       });
     },
     fechaHoraConfiguradaPeru: function fechaHoraConfiguradaPeru() {
@@ -3223,6 +3223,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -5074,6 +5075,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -41649,7 +41651,7 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass: "btn btn-purple btn-block",
+              staticClass: "btn btn-purple btn-block mt-4",
               attrs: { type: "submit" }
             },
             [_vm._v("\n                Anular Ticket\n            ")]
@@ -43630,6 +43632,8 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "mt-3", staticStyle: { width: "250px" } }, [
       _c("b", [_vm._v("Cajero(a): ")]),
+      _c("br"),
+      _vm._v(" "),
       _c("span", [_vm._v(_vm._s(_vm.data_venta_users_Global.name))])
     ]),
     _vm._v(" "),
@@ -46911,6 +46915,8 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "mt-3", staticStyle: { width: "250px" } }, [
       _c("b", [_vm._v("Cajero(a): ")]),
+      _c("br"),
+      _vm._v(" "),
       _c("span", [_vm._v(_vm._s(_vm.data_venta_users_Global.name))])
     ]),
     _vm._v(" "),

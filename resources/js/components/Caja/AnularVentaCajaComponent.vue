@@ -13,7 +13,7 @@
                         autofocus
                     />
                 </div>
-                <button type="submit" class="btn btn-purple btn-block">
+                <button type="submit" class="btn btn-purple btn-block mt-4">
                     Anular Ticket
                 </button>
             </div>
@@ -345,11 +345,11 @@ export default {
                         this.data_venta_users_Global = res.data;
                         $("#informacionTicketModal").modal("show");
                     } else {
-                        alert("No se puede anular el ticket.");
+                        alert("El ticket no puede anularse.");
                     }
                 })
                 .catch(error => {
-                    alert("El número de ticket no existe en la base de datos.");
+                    alert("El ticket no existe en la base de datos.");
                 });
         },
         fechaHoraConfiguradaPeru() {
