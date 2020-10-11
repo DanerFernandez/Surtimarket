@@ -558,7 +558,7 @@ export default {
                 .get(`producto/${id}`)
                 .then(res => {
                     if (res.data.stock < 1) {
-                        alert('No hay stock del producto')
+                        alert("No hay stock del producto");
                     } else {
                         this.carrito.push({
                             codigo: res.data.id,

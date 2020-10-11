@@ -21,6 +21,7 @@ class CreateVentasTable extends Migration
             $table->foreign('id_caja')->references('id')->on('cajas');
             $table->double('total', 8, 2);
             $table->string('metodoPago',50);
+            $table->string('detalleMetodoPago',50);
             $table->boolean('estado');
             $table->timestamps();
         });

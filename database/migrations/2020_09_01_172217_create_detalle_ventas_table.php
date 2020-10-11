@@ -14,6 +14,7 @@ class CreateDetalleVentasTable extends Migration
     public function up()
     {
         Schema::create('detalle_ventas', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('id_venta');
             $table->foreign('id_venta')->references('id')->on('ventas');
             $table->string("id_producto",100);

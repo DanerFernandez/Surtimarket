@@ -54,7 +54,9 @@
         </a>
         @endif
     </div>
+    @if (auth()->user()->id === 1)
     <div class="col-md-6 text-center mt-4">
         <producto-escaso-component/>
     </div>
+    @endif
 </div>

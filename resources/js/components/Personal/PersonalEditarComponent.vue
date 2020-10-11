@@ -114,60 +114,97 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="card">
-                            <div class="card-header text-center">
-                                Reestablecer Contraseña
-                                <button
-                                    type="button"
-                                    class="close"
-                                    data-dismiss="modal"
-                                    aria-label="Close"
-                                >
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-12 form-group">
-                                        <label>Nombre</label>
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-model="datosUsuario.nombre"
-                                            disabled
-                                        />
-                                    </div>
-                                    <div class="col-md-12 form-group">
-                                        <label>Usuario </label>
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-model="datosUsuario.usuario"
-                                            disabled
-                                        />
-                                    </div>
-                                    <div class="col-md-12 form-group">
-                                        <label
-                                            >Nueva Contraseña
-                                            <b class="text-danger">*</b></label
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            placeholder="Nueva Contraseña"
-                                            v-model="nuevaContraseña"
-                                            required
-                                        />
+                            <form @submit.prevent="reestablecerPassword">
+                                <div class="card-header text-center">
+                                    Reestablecer Contraseña
+                                    <button
+                                        type="button"
+                                        class="close"
+                                        data-dismiss="modal"
+                                        aria-label="Close"
+                                    >
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12 form-group">
+                                            <label>Nombre</label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                v-model="datosUsuario.nombre"
+                                                disabled
+                                            />
+                                        </div>
+                                        <div class="col-md-12 form-group">
+                                            <label>Usuario </label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                v-model="datosUsuario.usuario"
+                                                disabled
+                                            />
+                                        </div>
+                                        <div class="col-md-12 form-group">
+                                            <label
+                                                >Nueva Contraseña
+                                                <b class="text-danger"
+                                                    >*</b
+                                                ></label
+                                            >
+                                            <input
+                                                id="nuevaContrasena"
+                                                type="text"
+                                                class="form-control"
+                                                placeholder="Nueva Contraseña"
+                                                v-model="nuevaContraseña"
+                                                required
+                                            />
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="card-footer">
+                                    <button
+                                        type="submit"
+                                        class="btn btn-purple btn-block"
+                                        data-dismiss="modal"
+                                        @click="reestablecerPassword"
+                                    >
+                                        Reestablecer Contraseña
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="modal fade"
+                id="mensajeModal"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="mensajeModal"
+                aria-hidden="true"
+                onkeypress="$('#mensajeModal').modal('hide');"
+            >
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="card">
+                            <div class="card-header">
+                                Mensaje
+                            </div>
+                            <div class="card-body">
+                                {{ mensaje }}
                             </div>
                             <div class="card-footer">
                                 <button
                                     type="button"
-                                    class="btn btn-purple btn-block"
+                                    class="btn btn-dark btn-block"
                                     data-dismiss="modal"
-                                    @click="reestablecerPassword"
                                 >
-                                    Reestablecer Contraseña
+                                    Cerrar
                                 </button>
                             </div>
                         </div>
@@ -187,7 +224,8 @@ export default {
                 nombre: "",
                 usuario: ""
             },
-            nuevaContraseña: ""
+            nuevaContraseña: "",
+            mensaje: ""
         };
     },
     created() {
@@ -205,9 +243,13 @@ export default {
             });
         },
         editarDatosUsuario() {
-            if (this.datosUsuario.usuario==='' || this.datosUsuario.nombre==='') {
-                alert('Debe llenar todos los campos.')
-            }else{
+            if (
+                this.datosUsuario.usuario === "" ||
+                this.datosUsuario.nombre === ""
+            ) {
+                this.mensaje = "Debe llenar todos los campos.";
+                $("#mensajeModal").modal("show");
+            } else {
                 const params = {
                     id: this.datosUsuario.id,
                     nuevoNombre: this.datosUsuario.nombre,
@@ -222,16 +264,21 @@ export default {
             }
         },
         reestablecerPassword() {
-            if (this.nuevaContraseña==='') {
-                alert('Debe llenar todos los campos.')
-            }else{
+            if (this.nuevaContraseña === "") {
+                this.mensaje = "Debe llenar todos los campos.";
+                $("#mensajeModal").modal("show");
+            } else {
                 const newpass = {
                     contrasena: this.nuevaContraseña
                 };
-                axios.put(`usuario/${this.datosUsuario.id}`, newpass).then(res => {
-                    this.nuevaContraseña = "";
-                    console.log(res.data);
-                });
+                axios
+                    .put(`usuario/${this.datosUsuario.id}`, newpass)
+                    .then(res => {
+                        this.nuevaContraseña = "";
+                        this.mensaje =
+                            "La contraseña ha sido reestablecida correctamente.";
+                        $("#mensajeModal").modal("show");
+                    });
             }
         }
     }
