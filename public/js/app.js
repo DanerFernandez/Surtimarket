@@ -42322,18 +42322,7 @@ var render = function() {
             : _c("div", [
                 !_vm.verVentasRealizadas && !_vm.verAnularVentas
                   ? _c("div", [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "btn btn-purple btn-block",
-                          attrs: { href: "./vista-venta" }
-                        },
-                        [
-                          _vm._v(
-                            "\n                            Ir a Venta\n                        "
-                          )
-                        ]
-                      ),
+                      _vm._m(1),
                       _vm._v(" "),
                       _c("div", { staticClass: "row my-5" }, [
                         _c("div", { staticClass: "col-md-4 text-center" }, [
@@ -42421,7 +42410,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("table", { staticClass: "table text-center" }, [
-                        _vm._m(1),
+                        _vm._m(2),
                         _vm._v(" "),
                         _c("tbody", [
                           _c("tr", [
@@ -42521,7 +42510,7 @@ var render = function() {
               _c("div", { staticClass: "modal-dialog" }, [
                 _c("div", { staticClass: "modal-content" }, [
                   _c("div", { staticClass: "card" }, [
-                    _vm._m(2),
+                    _vm._m(3),
                     _vm._v(" "),
                     _c("div", { staticClass: "card-body text-center" }, [
                       _c("img", {
@@ -42634,6 +42623,19 @@ var staticRenderFns = [
         )
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "btn btn-light btn-block",
+        attrs: { href: "./vista-venta" }
+      },
+      [_c("b", [_vm._v("◄   IR A VENTAS")])]
+    )
   },
   function() {
     var _vm = this

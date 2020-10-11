@@ -133,10 +133,10 @@
                     <div v-else>
                         <div v-if="!verVentasRealizadas && !verAnularVentas">
                             <a
-                                class="btn btn-purple btn-block"
+                                class="btn btn-light btn-block"
                                 href="./vista-venta"
                             >
-                                Ir a Venta
+                                <b>◄   IR A VENTAS</b>
                             </a>
                             <div class="row my-5">
                                 <div class="col-md-4 text-center">
