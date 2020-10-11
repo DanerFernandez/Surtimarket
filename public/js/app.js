@@ -45073,7 +45073,7 @@ var render = function() {
                     _vm.respuestaBien
                       ? _c("div", { staticClass: "card-body" }, [
                           _vm._v(
-                            "\n                                El producto se creó\n                                "
+                            "\n                                El producto creado\n                                "
                           ),
                           _c("b", [_vm._v("correctamente")]),
                           _vm._v(".\n                            ")

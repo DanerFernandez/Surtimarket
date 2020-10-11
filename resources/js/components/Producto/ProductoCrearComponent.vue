@@ -107,7 +107,7 @@
                                     </button>
                                 </div>
                                 <div class="card-body" v-if="respuestaBien">
-                                    El producto se creó
+                                    El producto creado
                                     <b>correctamente</b>.
                                 </div>
                                 <div class="card-body" v-if="respuestaMal">
