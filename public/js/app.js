@@ -4076,9 +4076,60 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      ultimosProductosCreados: [],
       codigoProducto: "",
       nombreProducto: "",
       descripcionProducto: "",
@@ -4086,12 +4137,20 @@ __webpack_require__.r(__webpack_exports__);
       stockProducto: "",
       stockMinimoProducto: "",
       respuestaBien: false,
-      respuestaMal: false
+      respuestaMal: false,
+      mensaje: true
     };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get("producto").then(function (res) {
+      _this.ultimosProductosCreados = res.data;
+    });
   },
   methods: {
     crearProducto: function crearProducto() {
-      var _this = this;
+      var _this2 = this;
 
       var nuevoProducto = {
         codigoProducto: this.codigoProducto,
@@ -4102,32 +4161,24 @@ __webpack_require__.r(__webpack_exports__);
         stockMinimoProducto: this.stockMinimoProducto
       };
       axios.post("producto", nuevoProducto).then(function (res) {
-        _this.respuestaBien = true;
-        _this.respuestaMal = false;
-        $("#respuestaModal").modal("show");
-        _this.codigoProducto = "";
-        _this.nombreProducto = "";
-        _this.descripcionProducto = "";
-        _this.precioProducto = "";
-        _this.stockProducto = "";
-        _this.stockMinimoProducto = "";
-        console.log(res.data);
+        //Envio un mensaje de producto creado correctamente
+        _this2.mensaje = true; //Mensaje Bueno
+
+        $("#respuestaModal").modal("show"); //Pongo en blanco los campos
+
+        _this2.codigoProducto = "";
+        _this2.nombreProducto = "";
+        _this2.descripcionProducto = "";
+        _this2.precioProducto = "";
+        _this2.stockProducto = "";
+        _this2.stockMinimoProducto = ""; //Desde el controlador envio la lista de ultimos 50 productos creados.
+
+        _this2.ultimosProductosCreados = res.data;
       }, function (error) {
-        if (!error.response) {
-          alert("Error en el servidor.");
-        } else {
-          var code = error.response.status;
-          var response = error.response.data;
-          var originalRequest = error.config;
+        console.log(error);
+        _this2.mensaje = false; //Mensaje de que ocurrio un error
 
-          if (code === 404) {
-            _this.respuestaBien = false;
-            _this.respuestaMal = true;
-            $("#respuestaModal").modal("show");
-          }
-
-          return alert('Ha ocurrido un problema.');
-        }
+        $("#respuestaModal").modal("show");
       });
     }
   }
@@ -5822,7 +5873,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
 
-      axios.get("producto/".concat(id)).then(function (res) {
+      axios.get("producto/" + id).then(function (res) {
         if (res.data.stock < 1) {
           alert("No hay stock del producto");
         } else {
@@ -5862,6 +5913,8 @@ __webpack_require__.r(__webpack_exports__);
         nombre: this.nombreProducto
       };
       axios.post("busquedaNombreProducto", params).then(function (res) {
+        console.log(res.data);
+
         if (res.data.length < 1) {
           _this3.mensaje = "El nombre ingresado no existe en la base de datos";
           _this3.tablaBusquedaNombre = false;
@@ -45052,6 +45105,46 @@ var render = function() {
           ]
         ),
         _vm._v(" "),
+        _c("hr", { staticClass: "my-3" }),
+        _vm._v(" "),
+        _c("p", { staticClass: "text-center font-weight-bolder" }, [
+          _vm._v("\n                Ultimos 50 productos creados\n            ")
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "scrollable-sm", attrs: { id: "scroll-carrito" } },
+          [
+            _c("table", { staticClass: "table text-center table-hover" }, [
+              _vm._m(5),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.ultimosProductosCreados, function(item, index) {
+                  return _c("tr", { key: index }, [
+                    _c("th", { attrs: { scope: "row" } }, [
+                      _vm._v(_vm._s(index + 1))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(item.id))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(item.nombre))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(item.descripcion))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(item.precio))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(item.stock))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(item.stock_minimo))])
+                  ])
+                }),
+                0
+              )
+            ])
+          ]
+        ),
+        _vm._v(" "),
         _c(
           "div",
           {
@@ -45072,9 +45165,9 @@ var render = function() {
               [
                 _c("div", { staticClass: "modal-content" }, [
                   _c("div", { staticClass: "card" }, [
-                    _vm._m(5),
+                    _vm._m(6),
                     _vm._v(" "),
-                    _vm.respuestaBien
+                    _vm.mensaje == true
                       ? _c("div", { staticClass: "card-body" }, [
                           _vm._v(
                             "\n                                El producto creado\n                                "
@@ -45084,16 +45177,29 @@ var render = function() {
                         ])
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm.respuestaMal
+                    _vm.mensaje == false
                       ? _c("div", { staticClass: "card-body" }, [
+                          _c("b", [
+                            _vm._v(
+                              "Ocurrio un error al intentar editar el\n                                producto."
+                            )
+                          ]),
+                          _c("br"),
                           _vm._v(
-                            "\n                                Ocurrio un error al intentar editar el\n                                producto.\n                            "
-                          )
+                            "\n                                Posiblemente el id de producto ingresado ya existe en la base de datos."
+                          ),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("i", { staticStyle: { "font-size": "12px" } }, [
+                            _vm._v(
+                              "Si el problema persiste por favor contacte con el desarrollador."
+                            )
+                          ])
                         ])
                       : _vm._e(),
                     _vm._v(" "),
                     _c("div", { staticClass: "card-footer" }, [
-                      _vm.respuestaBien
+                      _vm.mensaje == true
                         ? _c(
                             "button",
                             {
@@ -45108,7 +45214,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      _vm.respuestaMal
+                      _vm.mensaje == false
                         ? _c(
                             "button",
                             {
@@ -45174,7 +45280,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12 mt-4" }, [
+    return _c("div", { staticClass: "col-md-12 my-4" }, [
       _c(
         "button",
         { staticClass: "btn btn-block btn-purple", attrs: { type: "submit" } },
@@ -45184,6 +45290,84 @@ var staticRenderFns = [
           )
         ]
       )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", { staticStyle: { "background-color": "#f5eefe !important" } }, [
+        _c(
+          "th",
+          { staticClass: "sticky-table-header", attrs: { scope: "col" } },
+          [
+            _vm._v(
+              "\n                                #\n                            "
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          { staticClass: "sticky-table-header", attrs: { scope: "col" } },
+          [
+            _vm._v(
+              "\n                                Id\n                            "
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          { staticClass: "sticky-table-header", attrs: { scope: "col" } },
+          [
+            _vm._v(
+              "\n                                Nombre\n                            "
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          { staticClass: "sticky-table-header", attrs: { scope: "col" } },
+          [
+            _vm._v(
+              "\n                                Descripcion\n                            "
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          { staticClass: "sticky-table-header", attrs: { scope: "col" } },
+          [
+            _vm._v(
+              "\n                                Precio\n                            "
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          { staticClass: "sticky-table-header", attrs: { scope: "col" } },
+          [
+            _vm._v(
+              "\n                                Stock\n                            "
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          { staticClass: "sticky-table-header", attrs: { scope: "col" } },
+          [
+            _vm._v(
+              "\n                                Stock Minimo\n                            "
+            )
+          ]
+        )
+      ])
     ])
   },
   function() {

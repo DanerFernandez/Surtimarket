@@ -18,7 +18,8 @@ class ProductoController extends Controller
 
     public function index()
     {
-        //
+        //return Caja::orderby('id','desc')->take(30)->where('estado', 0)->get();
+        return Producto::orderby('created_at','desc')->take(50)->get();
     }
 
     /**
@@ -48,7 +49,9 @@ class ProductoController extends Controller
         $nuevoProducto->stock_minimo = $request->stockMinimoProducto;
         $nuevoProducto->save();
 
-        return $nuevoProducto;
+        $ultimosProductosCreados = Producto::orderby('created_at','desc')->take(50)->get();
+
+        return $ultimosProductosCreados;
     }
 
     /**

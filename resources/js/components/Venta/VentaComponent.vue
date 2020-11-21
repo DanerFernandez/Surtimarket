@@ -555,7 +555,7 @@ export default {
                 }
             }
             axios
-                .get(`producto/${id}`)
+                .get(`producto/` + id)
                 .then(res => {
                     if (res.data.stock < 1) {
                         alert("No hay stock del producto");
@@ -600,6 +600,7 @@ export default {
                 nombre: this.nombreProducto
             };
             axios.post(`busquedaNombreProducto`, params).then(res => {
+                console.log(res.data);
                 if (res.data.length < 1) {
                     this.mensaje =
                         "El nombre ingresado no existe en la base de datos";
@@ -614,6 +615,7 @@ export default {
                             codigo: res.data[index].id,
                             nombre: res.data[index].nombre
                         });
+                        
                     }
                     this.nombreProducto = "";
                 }

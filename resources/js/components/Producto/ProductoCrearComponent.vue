@@ -72,7 +72,7 @@
                                 v-model.number="stockMinimoProducto"
                             />
                         </div>
-                        <div class="col-md-12 mt-4">
+                        <div class="col-md-12 my-4">
                             <button
                                 type="submit"
                                 class="btn btn-block btn-purple"
@@ -82,6 +82,54 @@
                         </div>
                     </div>
                 </form>
+                <hr class="my-3" />
+                <p class="text-center font-weight-bolder">
+                    Ultimos 50 productos creados
+                </p>
+                <div class="scrollable-sm" id="scroll-carrito">
+                    <table class="table text-center table-hover">
+                        <thead>
+                            <tr style="background-color: #f5eefe !important">
+                                <th scope="col" class="sticky-table-header">
+                                    #
+                                </th>
+                                <th scope="col" class="sticky-table-header">
+                                    Id
+                                </th>
+                                <th scope="col" class="sticky-table-header">
+                                    Nombre
+                                </th>
+                                <th scope="col" class="sticky-table-header">
+                                    Descripcion
+                                </th>
+                                <th scope="col" class="sticky-table-header">
+                                    Precio
+                                </th>
+                                <th scope="col" class="sticky-table-header">
+                                    Stock
+                                </th>
+                                <th scope="col" class="sticky-table-header">
+                                    Stock Minimo
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                                v-for="(item, index) in ultimosProductosCreados"
+                                :key="index"
+                            >
+                                <th scope="row">{{ index + 1 }}</th>
+                                <td>{{ item.id }}</td>
+                                <td>{{ item.nombre }}</td>
+                                <td>{{ item.descripcion }}</td>
+                                <td>{{ item.precio }}</td>
+                                <td>{{ item.stock }}</td>
+                                <td>{{ item.stock_minimo }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
                 <!-- MODAL DE RESPUESTA DEL SERVER -->
                 <div
                     class="modal fade"
@@ -106,17 +154,19 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <div class="card-body" v-if="respuestaBien">
+                                <div class="card-body" v-if="mensaje == true">
                                     El producto creado
                                     <b>correctamente</b>.
                                 </div>
-                                <div class="card-body" v-if="respuestaMal">
-                                    Ocurrio un error al intentar editar el
-                                    producto.
+                                <div class="card-body" v-if="mensaje == false">
+                                    <b>Ocurrio un error al intentar editar el
+                                    producto.</b><br>
+                                    Posiblemente el id de producto ingresado ya existe en la base de datos.<br>
+                                    <i style="font-size: 12px">Si el problema persiste por favor contacte con el desarrollador.</i>
                                 </div>
                                 <div class="card-footer">
                                     <button
-                                        v-if="respuestaBien"
+                                        v-if="mensaje == true"
                                         type="button"
                                         class="btn btn-success btn-block"
                                         data-dismiss="modal"
@@ -124,7 +174,7 @@
                                         Cerrar
                                     </button>
                                     <button
-                                        v-if="respuestaMal"
+                                        v-if="mensaje == false"
                                         type="button"
                                         class="btn btn-danger btn-block"
                                         data-dismiss="modal"
@@ -144,6 +194,7 @@
 export default {
     data() {
         return {
+            ultimosProductosCreados: [],
             codigoProducto: "",
             nombreProducto: "",
             descripcionProducto: "",
@@ -151,8 +202,14 @@ export default {
             stockProducto: "",
             stockMinimoProducto: "",
             respuestaBien: false,
-            respuestaMal: false
+            respuestaMal: false,
+            mensaje: true
         };
+    },
+    created() {
+        axios.get("producto").then(res => {
+            this.ultimosProductosCreados = res.data;
+        });
     },
     methods: {
         crearProducto() {
@@ -167,31 +224,25 @@ export default {
 
             axios.post(`producto`, nuevoProducto).then(
                 res => {
-                    this.respuestaBien = true;
-                    this.respuestaMal = false;
+                    //Envio un mensaje de producto creado correctamente
+                    this.mensaje = true;//Mensaje Bueno
                     $("#respuestaModal").modal("show");
+
+                    //Pongo en blanco los campos
                     this.codigoProducto = "";
                     this.nombreProducto = "";
                     this.descripcionProducto = "";
                     this.precioProducto = "";
                     this.stockProducto = "";
                     this.stockMinimoProducto = "";
-                    console.log(res.data);
+
+                    //Desde el controlador envio la lista de ultimos 50 productos creados.
+                    this.ultimosProductosCreados = res.data;
                 },
                 error => {
-                    if (!error.response) {
-                        alert("Error en el servidor.");
-                    } else {
-                        const code = error.response.status;
-                        const response = error.response.data;
-                        const originalRequest = error.config;
-                        if (code === 404) {
-                            this.respuestaBien = false;
-                            this.respuestaMal = true;
-                            $("#respuestaModal").modal("show");
-                        }
-                        return alert('Ha ocurrido un problema.');
-                    }
+                    console.log(error)
+                    this.mensaje = false;//Mensaje de que ocurrio un error
+                    $("#respuestaModal").modal("show");
                 }
             );
         }
