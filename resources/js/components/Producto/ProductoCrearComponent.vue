@@ -190,7 +190,7 @@ export default {
                             this.respuestaMal = true;
                             $("#respuestaModal").modal("show");
                         }
-                        return console.log(code);
+                        return alert('Ha ocurrido un problema.');
                     }
                 }
             );

@@ -18,8 +18,8 @@ class CreateProductosTable extends Migration
             $table->string("nombre",50);
             $table->text("descripcion")->nullable();
             $table->double("precio", 8, 2);
-            $table->integer("stock")->nullable();
-            $table->integer("stock_minimo")->nullable();
+            $table->double("stock", 8, 2)->nullable();
+            $table->double("stock_minimo", 8, 2)->nullable();
             $table->timestamps();
         });
     }

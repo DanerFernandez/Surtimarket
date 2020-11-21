@@ -220,7 +220,7 @@
                                 </tbody>
                             </table>
 
-                            <!-- Modal -->
+                            
                         </div>
                         <div v-else>
                             <div v-if="verVentasRealizadas">
@@ -236,6 +236,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Modal -->
                     <div
                         class="modal fade"
                         id="cerrarCajaModal"

@@ -224,7 +224,7 @@
                                                     v-if="continuar === 0"
                                                     type="number"
                                                     class="form-control d-inline form-control-sm"
-                                                    min="1"
+                                                    min="0"
                                                     style="width: 55px;"
                                                     v-model.number="
                                                         item.cantidad
@@ -516,8 +516,8 @@ export default {
     computed: {
         restriccionMinimaCantidadProducto() {
             for (let index = 0; index < this.carrito.length; index++) {
-                if (this.carrito[index].cantidad < 1) {
-                    this.carrito[index].cantidad = 1;
+                if (this.carrito[index].cantidad < 0) {
+                    this.carrito[index].cantidad = 0;
                 } else if (
                     this.carrito[index].cantidad > this.carrito[index].stock
                 ) {

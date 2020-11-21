@@ -2594,6 +2594,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4124,7 +4126,7 @@ __webpack_require__.r(__webpack_exports__);
             $("#respuestaModal").modal("show");
           }
 
-          return console.log(code);
+          return alert('Ha ocurrido un problema.');
         }
       });
     }
@@ -5782,8 +5784,8 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     restriccionMinimaCantidadProducto: function restriccionMinimaCantidadProducto() {
       for (var index = 0; index < this.carrito.length; index++) {
-        if (this.carrito[index].cantidad < 1) {
-          this.carrito[index].cantidad = 1;
+        if (this.carrito[index].cantidad < 0) {
+          this.carrito[index].cantidad = 0;
         } else if (this.carrito[index].cantidad > this.carrito[index].stock) {
           this.carrito[index].cantidad = this.carrito[index].stock;
         }
@@ -47641,7 +47643,7 @@ var render = function() {
                                         staticStyle: { width: "55px" },
                                         attrs: {
                                           type: "number",
-                                          min: "1",
+                                          min: "0",
                                           onclick: "this.select();"
                                         },
                                         domProps: { value: item.cantidad },
